@@ -44,6 +44,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/finance/deposit', [FinanceController::class, 'deposit'])->name('deposit');
     Route::post('/finance/deduct', [FinanceController::class, 'deduct'])->name('deduct');
     Route::post('/finance/changeColor', [FinanceController::class, 'changeColor'])->name('changeColor');
+    Route::get('/finance/diagram', [FinanceController::class, 'diagram'])->name('diagram');
 
 
 

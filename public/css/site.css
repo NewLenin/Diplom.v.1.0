@@ -1437,6 +1437,8 @@ footer .copy {
   width: 100%;
   margin: 0 20px 20px 0;
   height: 100%;
+  min-height: 500px;
+  width: 100%;
 }
 .finance-statistic .profile-finance-content .balance {
   display: -webkit-box;
@@ -1931,6 +1933,7 @@ footer .copy {
 .finance .balance .diagram {
   height: auto;
   width: 100%;
+  min-height: 500px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;

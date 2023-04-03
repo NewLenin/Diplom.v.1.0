@@ -128,16 +128,9 @@
                         </svg>
                     </div>
                     <div class="profile-finance-content flex-box -wrap -just-center">
-                        <div class="-colum-33 diagram">
+                        <div class="-colum-33 diagram" id="diagram">
 
-                            <svg width="100%" height="100%" viewBox="0 0 42 42" xmlns="http://www.w3.org/2000/svg">
-                                <circle cx="21" cy="21" r="15.9154" fill="white" />
-                                <circle cx="21" cy="21" r="15.9154" fill="transparent"
-                                    stroke="#FF5C00" stroke-width="9" />
-                                <circle cx="21" cy="21" r="15.9154" fill="transparent"
-                                    stroke="#2BBD28" stroke-width="9" stroke-dasharray="75" />
 
-                            </svg>
 
                         </div>
                         <div class="-colum-33 balance">

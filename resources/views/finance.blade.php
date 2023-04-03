@@ -14,15 +14,8 @@
                                 <circle cx="12.5" cy="12.5" r="12.5" fill="white" />
                             </svg>
                         </div>
-                        <div class="diagram -colum-50">
-                            <svg width="90%" height="90%" viewBox="0 0 42 42" xmlns="http://www.w3.org/2000/svg">
-                                <circle cx="21" cy="21" r="15.9154" fill="white" />
-                                <circle cx="21" cy="21" r="15.9154" fill="transparent" stroke="#FF5C00"
-                                    stroke-width="9" />
-                                <circle cx="21" cy="21" r="15.9154" fill="transparent" stroke="#2BBD28"
-                                    stroke-width="9" stroke-dasharray="75" />
+                        <div class="diagram -colum-50" id="diagram">
 
-                            </svg>
                         </div>
                         <div class="balance-info -colum-50">
                             @if ($fin && !$fin->isEmpty())
@@ -256,7 +249,6 @@
 
         </div>
     </section>
-
 
 
 

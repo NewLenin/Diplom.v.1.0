@@ -53,7 +53,13 @@ class FinanceController extends Controller
         ->where('finances.user_id', Auth::id())
         ->where('date','<', $treeDaysAgo)
         ->get();
-
+        // $data = Finance::where('user_id', Auth::Id())->get();
+        // $charData = '';
+        // foreach ($data as $d) {
+        //     $charData.="['".$d->name."', $d->percent],";
+        // }
+        // $arr['charData'] =rtrim($charData,",");
+        // dd($arr);
         // dd($transToday, $transYest);
         return view('finance', [
         'fin' => $fin,
@@ -62,8 +68,25 @@ class FinanceController extends Controller
             'transToday'=>$transToday,
             'transYest'=> $transYest,
             'transAgo' =>$transAgo,
-            'transToBill'=> $transToBill
+            'transToBill'=> $transToBill,
+            // 'charData' => $arr['charData']
         ]);
+    }
+
+    public function diagram(Request $r)
+    {
+        $data = Finance::select('finances.name as name', 'finances.percent as percent', 'finances.color as color')
+        ->where('user_id', Auth::Id())
+        ->get();
+        $color = array();
+        foreach ($data as $d) {
+            array_push($color, $d->color);
+        }
+        return response()->json([
+            'color'=>$color,
+            'data'=>$data
+        ], 200);
+
     }
 
 
@@ -74,7 +97,6 @@ class FinanceController extends Controller
             'color' => 'required|string',
             'balance' => 'required|regex:/^\d+(\.\d{1,2})?$/'
         ]);
-
 
 
         if ($validator->fails()) {

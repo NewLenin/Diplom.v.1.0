@@ -1,4 +1,6 @@
-﻿function formAction(form, action) {
+﻿
+
+function formAction(form, action) {
     action.preventDefault();
     let idForm = $(form).attr('id');
     $.post({
@@ -114,6 +116,74 @@ $('input[name="day-status-checkbox"]').click(function (e) {
         }
     }
 })
+
+google.charts.load("current", { packages: ["corechart"] });
+google.charts.setOnLoadCallback(drawChart);
+
+function drawChart() {
+    var jsonData = $.ajax({
+        url: '/finance/diagram',
+        dataType: "json",
+        async: false
+    }).responseJSON;
+    console.log(jsonData);
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'name');
+    data.addColumn('number', 'percent');
+    const rows = [];
+    const colors = [];
+    $.each(jsonData.data, function (index, value) {
+        rows.push([
+            value.name,
+            value.percent]
+        )
+    });
+    data.addRows(
+        rows
+    )
+    console.log(colors);
+    var options = {
+        height: '100%',
+        width: '100%',
+        legend: 'none',
+        colors: jsonData.color,
+        pieHole: 0.4,
+    };
+    var chart = new google.visualization.PieChart(document.getElementById('diagram'));
+    chart.draw(data, options);
+}
+// function drawChart() {
+//     var jsonData = $.ajax({
+//         url: '/profile/diagram',
+//         dataType: "json",
+//         async: false
+//     }).responseJSON;
+//     console.log(jsonData);
+//     var data = new google.visualization.DataTable();
+//     data.addColumn('string', 'name');
+//     data.addColumn('number', 'percent');
+//     const rows = [];
+//     const colors = [];
+//     $.each(jsonData.data, function (index, value) {
+//         rows.push([
+//             value.name,
+//             value.percent]
+//         )
+//     });
+//     data.addRows(
+//         rows
+//     )
+//     console.log(colors);
+//     var options = {
+//         height: '100%',
+//         width: '100%',
+//         legend: 'none',
+//         colors: jsonData.color,
+//         pieHole: 0.4,
+//     };
+//     var chart = new google.visualization.PieChart(document.getElementById('diagram'));
+//     chart.draw(data, options);
+// }
 
 $(document).ready(function (params) {
     //данные из календаря
@@ -357,7 +427,6 @@ $(document).ready(function (params) {
         data: data,
         success: (res) => {
             // console.log(res.warningValue);
-
             // Статистика
             $('span#text-success').text(' ' + res.goodDays);
             $('span#text-warning').text(' ' + res.normalDays);
@@ -502,6 +571,61 @@ function addEl() {
     let parentGuest = document.getElementById(lastNum + "Input");
     parentGuest.parentNode.insertBefore(elem, parentGuest.nextSibling);
 }
+
+
+
+
+
+// $(document).ready(function (params) {
+//     $.get({
+//         url: '/finance/diagram',
+//         // data: data,
+//         success: (res) => {
+
+//             const PieChart ={
+//                 data: [
+//                     ['Task', '21'],
+//                     res
+//                 ],
+//                 element: '#donutchart',
+//                 options: {
+//                     width: 500,
+//                     height: 300
+//                 }
+//             };
+
+//             const init = () =>{
+//                 PieChart.chart = new google.visualization.PieChart(
+//                     document.querySelector(PieChart.element)
+//                 );
+//                 PieChart.chart.draw(
+//                     google.visualization.arrayToDataTable(PieChart.data),
+//                     PieChart.options
+//                 );
+//             };
+//             google.charts.load("current", {packages:["corechart"], callback: init});
+//             // var data = google.visualization.arrayToDataTable([
+//             //     ['Task', '21'],
+//             //     res
+//             //   ]);
+
+//             //   var options = {
+//             //     title: 'My Daily Activities',
+//             //     pieHole: 0.4,
+//             //   };
+
+//             //   var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
+//             //   chart.draw(data, options);
+//         }
+//     })
+// })
+
+
+
+
+
+
+
 
 
 // $('select#filter').change(function () {
