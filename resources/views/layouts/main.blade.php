@@ -28,19 +28,23 @@
                         </svg>
                     </a>
                     @if (Auth::check())
+                    <div class="header-links">
                         <a class="profile-button" href="{{ route('profile') }}">
                             Профиль
                         </a>
                         <a class="profile-button" href="{{ route('logout') }}">
                             Выход
                         </a>
+                    </div>
                     @else
+                    <div class="header-links">
                         <a class="profile-button" href="{{ route('login') }}">
                             Вход
                         </a>
                         <a class="profile-button" href="{{ route('registration') }}">
                             Регистрация
                         </a>
+                    </div>
                     @endif
 
                 </div>

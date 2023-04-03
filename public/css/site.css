@@ -334,12 +334,12 @@ textarea {
   right: 17px;
 }
 
-.purpose .unfulfilled-purpose .unfulfilled-content input, .purpose .slider .slider-element .element-content form input, .diary .additional-parameters .day-status input {
+.purpose .unfulfilled-purpose .unfulfilled-content input, .purpose .slider-element .element-content form input, .diary .additional-parameters .day-status input {
   position: absolute;
   z-index: -1;
   opacity: 0;
 }
-.purpose .unfulfilled-purpose .unfulfilled-content input + label, .purpose .slider .slider-element .element-content form input + label, .diary .additional-parameters .day-status input + label {
+.purpose .unfulfilled-purpose .unfulfilled-content input + label, .purpose .slider-element .element-content form input + label, .diary .additional-parameters .day-status input + label {
   cursor: pointer;
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
@@ -352,7 +352,7 @@ textarea {
   -ms-user-select: none;
   user-select: none;
 }
-.purpose .unfulfilled-purpose .unfulfilled-content input + label::before, .purpose .slider .slider-element .element-content form input + label::before, .diary .additional-parameters .day-status input + label::before {
+.purpose .unfulfilled-purpose .unfulfilled-content input + label::before, .purpose .slider-element .element-content form input + label::before, .diary .additional-parameters .day-status input + label::before {
   content: "";
   display: inline-block;
   width: 40px;
@@ -369,12 +369,12 @@ textarea {
   background-position: center center;
   background-size: 50% 50%;
 }
-.purpose .unfulfilled-purpose .unfulfilled-content input:checked + label::before, .purpose .slider .slider-element .element-content form input:checked + label::before, .diary .additional-parameters .day-status input:checked + label::before {
+.purpose .unfulfilled-purpose .unfulfilled-content input:checked + label::before, .purpose .slider-element .element-content form input:checked + label::before, .diary .additional-parameters .day-status input:checked + label::before {
   border-color: #42ff00;
   background-color: #ffffff;
   background-image: url("../img/Vector 29.svg");
 }
-.purpose .unfulfilled-purpose .unfulfilled-content input:not(:disabled):not(:checked) + label:hover::before, .purpose .slider .slider-element .element-content form input:not(:disabled):not(:checked) + label:hover::before, .diary .additional-parameters .day-status input:not(:disabled):not(:checked) + label:hover::before {
+.purpose .unfulfilled-purpose .unfulfilled-content input:not(:disabled):not(:checked) + label:hover::before, .purpose .slider-element .element-content form input:not(:disabled):not(:checked) + label:hover::before, .diary .additional-parameters .day-status input:not(:disabled):not(:checked) + label:hover::before {
   border-color: #6ac947;
 }
 
@@ -573,7 +573,7 @@ a.underline {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  width: 361px;
+  width: 300px;
   height: 65px;
   background: #ffffff;
   border-radius: 5px;
@@ -718,7 +718,8 @@ a.underline {
 header {
   width: 100%;
   color: white;
-  height: 100px;
+  height: 100%;
+  padding: 10px;
   left: 0px;
   top: 0px;
   background: #2e2e2e;
@@ -735,6 +736,8 @@ header .header {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
 }
 header .header a {
   font-size: 36px;
@@ -742,7 +745,19 @@ header .header a {
   color: #ffffff;
   text-decoration: none;
 }
-header .header .profile-button {
+header .header .header-links {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+header .header .header-links .profile-button {
+  margin: 5px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -761,6 +776,13 @@ header .header .profile-button {
   font-size: 24px;
   line-height: 28px;
   color: #000000;
+}
+@media (max-width: 600px) {
+  header .header {
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
 }
 
 footer {
@@ -963,8 +985,7 @@ footer .copy {
   display: -ms-flexbox;
   display: flex;
   max-width: 520px;
-  height: 100%;
-  max-height: 609px;
+  height: auto;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
@@ -989,12 +1010,8 @@ footer .copy {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
   padding: 20px;
-  max-height: 493px;
-  height: 100%;
+  height: auto;
   background: #ffffff;
   border-radius: 5px;
 }
@@ -1194,7 +1211,7 @@ footer .copy {
   padding: 45px;
   position: relative;
   width: 100%;
-  height: 100%;
+  height: auto;
   min-height: 549px;
   background: #2e2e2e;
   border-radius: 10px;
@@ -1213,7 +1230,7 @@ footer .copy {
       -ms-flex-pack: justify;
           justify-content: space-between;
   width: 100%;
-  height: 465px;
+  height: auto;
   background: #ffffff;
   border-radius: 5px;
 }
@@ -1236,7 +1253,6 @@ footer .copy {
   width: 100%;
   height: 100%;
   max-width: 553px;
-  min-height: 248px;
   background: #ffffff;
   border-radius: 5px;
 }
@@ -1244,8 +1260,8 @@ footer .copy {
   height: 100%;
   width: 100%;
   font-weight: 400;
-  font-size: 50px;
-  line-height: 50px;
+  font-size: 28px;
+  line-height: 28px;
 }
 .statistic .diary-profile-statistic .diary-profile-statistic-content .calendar .calendar-content form {
   height: auto;
@@ -1549,32 +1565,10 @@ footer .copy {
 .purpose h1 {
   margin: 30px 5px;
   font-weight: 400;
-  font-size: 56.86px;
+  font-size: 42px;
   line-height: 116.3%;
 }
-.purpose .slider {
-  position: relative;
-  background: #e4e4e4;
-  height: 100%;
-  width: 100%;
-}
-.purpose .slider .slider-buttons {
-  padding: 0 2%;
-  top: 50%;
-  width: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  position: absolute;
-}
-.purpose .slider .slider-buttons button {
-  border: none;
-  background: none;
-}
-.purpose .slider .slider-element {
+.purpose .slider-element {
   z-index: 2;
   margin: 0 15px 30px 15px;
   padding: 40px;
@@ -1583,7 +1577,7 @@ footer .copy {
   height: auto;
   width: 100%;
 }
-.purpose .slider .slider-element .element-header {
+.purpose .slider-element .element-header {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1595,13 +1589,13 @@ footer .copy {
           justify-content: space-between;
   margin-bottom: 20px;
 }
-.purpose .slider .slider-element .element-header h2 {
+.purpose .slider-element .element-header h2 {
   font-weight: 400;
   font-size: 40px;
   line-height: 47px;
   color: #ffffff;
 }
-.purpose .slider .slider-element .element-header .date {
+.purpose .slider-element .element-header .date {
   padding: 10px 50px;
   font-weight: 400;
   font-size: 20px;
@@ -1613,7 +1607,7 @@ footer .copy {
   height: 100%;
   width: 100%;
 }
-.purpose .slider .slider-element .element-content {
+.purpose .slider-element .element-content {
   padding: 40px 20px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1630,7 +1624,7 @@ footer .copy {
   background: #ffffff;
   border-radius: 5px;
 }
-.purpose .slider .slider-element .element-content form {
+.purpose .slider-element .element-content form {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1646,7 +1640,7 @@ footer .copy {
       -ms-flex-pack: justify;
           justify-content: space-between;
 }
-.purpose .slider .slider-element .element-content form .tasks {
+.purpose .slider-element .element-content form .tasks {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1655,10 +1649,10 @@ footer .copy {
       -ms-flex-direction: column;
           flex-direction: column;
 }
-.purpose .slider .slider-element .element-content form label {
+.purpose .slider-element .element-content form label {
   margin-bottom: 20px;
 }
-.purpose .slider .slider-element .element-content .add-task {
+.purpose .slider-element .element-content .add-task {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1667,14 +1661,14 @@ footer .copy {
   font-family: "Jura";
   font-style: normal;
   font-weight: 400;
-  font-size: 40px;
+  font-size: 32px;
   line-height: 47px;
   margin-bottom: 20px;
 }
-.purpose .slider .slider-element .element-content .add-task svg {
+.purpose .slider-element .element-content .add-task svg {
   margin-right: 5px;
 }
-.purpose .slider .slider-element .element-content .submit {
+.purpose .slider-element .element-content .submit {
   background: #ffffff;
   border: 2px solid #42ff00;
   border-radius: 10px;
@@ -1683,6 +1677,22 @@ footer .copy {
   line-height: 28px;
   width: 247px;
   height: 53px;
+}
+.purpose .slider-buttons {
+  padding: 0 2%;
+  top: 50%;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  position: absolute;
+}
+.purpose .slider-buttons button {
+  border: none;
+  background: none;
 }
 .purpose .add-purpose {
   padding: 30px;
@@ -1744,7 +1754,7 @@ footer .copy {
   font-family: "Jura";
   font-style: normal;
   font-weight: 400;
-  font-size: 40px;
+  font-size: 32px;
   line-height: 47px;
   margin-bottom: 20px;
 }
@@ -1756,9 +1766,9 @@ footer .copy {
   border: 2px solid black;
   border-radius: 10px;
   font-weight: 400;
-  font-size: 24px;
+  font-size: 20px;
   line-height: 28px;
-  width: 247px;
+  width: 220px;
   height: 53px;
 }
 .purpose .unfulfilled-purpose {
@@ -1878,7 +1888,7 @@ footer .copy {
 .finance h1 {
   margin: 30px 5px;
   font-weight: 400;
-  font-size: 56.86px;
+  font-size: 42px;
   line-height: 116.3%;
 }
 .finance .balance {
@@ -1898,7 +1908,7 @@ footer .copy {
 }
 .finance .balance .balance-info h3 {
   font-weight: 400;
-  font-size: 48px;
+  font-size: 40px;
   line-height: 57px;
   color: #000000;
 }
@@ -1922,18 +1932,17 @@ footer .copy {
 }
 .finance .balance .balance-info .balance-data .account-balance h4 {
   font-weight: 400;
-  font-size: 40px;
+  font-size: 28px;
   line-height: 47px;
 }
 .finance .balance .balance-info .balance-data .account-balance p {
   font-weight: 400;
-  font-size: 32px;
+  font-size: 20px;
   line-height: 38px;
 }
 .finance .balance .diagram {
   height: auto;
   width: 100%;
-  min-height: 500px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1952,7 +1961,7 @@ footer .copy {
   border: 2px solid #42ff00;
   border-radius: 10px;
   font-weight: 400;
-  font-size: 24px;
+  font-size: 20px;
   line-height: 28px;
 }
 .finance .invoice {
@@ -1991,6 +2000,7 @@ footer .copy {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  margin: 0 15px 10px 0;
 }
 .finance .invoice .invoice-header form .invoice-container .invoice-name {
   margin-right: 20px;
@@ -2002,7 +2012,7 @@ footer .copy {
           align-items: center;
   background: #ffffff;
   border-radius: 10px;
-  font-size: 40px;
+  font-size: 28px;
   line-height: 47px;
   height: 68px;
   max-width: 531px;
@@ -2021,6 +2031,12 @@ footer .copy {
   border: none;
   height: 100%;
   width: 100%;
+}
+@media (max-width: 600px) {
+  .finance .invoice .invoice-header form {
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+  }
 }
 .finance .invoice .invoice-header a {
   margin-right: 20px;
@@ -2113,12 +2129,12 @@ footer .copy {
 }
 .finance .invoice .invoice-content .invoice-change-balance h2 {
   font-weight: 400;
-  font-size: 40px;
+  font-size: 28px;
   line-height: 47px;
 }
 .finance .invoice .invoice-content .invoice-change-balance p {
   font-weight: 400;
-  font-size: 48px;
+  font-size: 32px;
   line-height: 57px;
 }
 .finance .transaction {
@@ -2145,7 +2161,7 @@ footer .copy {
 }
 .finance .transaction .transaction-content h2 {
   font-weight: 400;
-  font-size: 40px;
+  font-size: 28px;
   line-height: 47px;
   margin-bottom: 20px;
 }
@@ -2158,7 +2174,7 @@ footer .copy {
   height: 68px;
   width: 100%;
   font-weight: 400;
-  font-size: 40px;
+  font-size: 28px;
   line-height: 47px;
   display: -webkit-box;
   display: -ms-flexbox;

@@ -1,74 +1,71 @@
 @extends('layouts.main')
 @section('main')
     <section class="purpose">
-        <div class="slider">
-            <div class="slider-buttons">
-                <button>
-                    <svg width="36" height="79" viewBox="0 0 36 79" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M34 2L3 38.9048L34 77" stroke="black" stroke-width="4" />
-                    </svg>
-                </button>
-                <button>
-                    <svg width="36" height="79" viewBox="0 0 36 79" fill="none"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path d="M2 77L33 40.0952L2 2" stroke="black" stroke-width="4" />
-                    </svg>
-                </button>
 
-            </div>
-
-            <div class="main-container">
-                <div class="main-row">
-                    <h1>Активные цели</h1>
-                </div>
-                <div class="main-row">
-                    @if ($activePurposes && !$activePurposes->isEmpty())
-                        @foreach ($activePurposes as $ap)
-                            <div class="slider-element -colum-50" style="background-color: {{$color->color}}">
-
-                                <div class="element-header">
-                                    <h2>{{ $ap->purpose }}</h2>
-                                    <div class="date">Цель до {{ $ap->dating }}</div>
-                                </div>
-                                <div class="element-content">
-                                    <form action="{{route('closePurpose')}}" method="post" id="closePurposeForm" onsubmit="formAction(this, event)">
-                                        @csrf
-                                        <input type="text" name="purpose_id" value="{{ $ap->id }}">
-                                        <div class="tasks">
-                                        @foreach ($activeTasks as $at)
-                                        @if ($at->pId == $ap->id)
-
-
-                                            <input type="text" name="task_id" value="{{ $at->id }}"
-                                                class="visually-hidden">
-                                            <input type="checkbox"  value="{{$at->id}}"
-                                                id="task{{ $at->id }}-status-checkbox{{ $at->id }}"
-                                                class="task-status-checkbox" @if ($at->status == 1) checked @endif>
-                                            <label
-                                                for="task{{ $at->id }}-status-checkbox{{ $at->id }}">{{ $at->name }}</label>
-
-                                                @endif
-                                        @endforeach
-                                    </div>
-                                        <div class="flex-box -just-center">
-                                            <button type="submit" class="submit">Закрыть цель</button>
-                                        </div>
-                                        <div class="alert alert-danger mt-3" style="display: none" id="formError{{$ap->id}}" role="alert"></div>
-
-                                    </form>
-                                </div>
-
-                            </div>
-                        @endforeach
-                    @else
-                        <h1>Активных целей нет</h1>
-                    @endif
-
-
-                </div>
-
-            </div>
+        <div class="main-row">
+            <h1>Активные цели</h1>
         </div>
+        <div id="carouselExampleFade" class="carousel slide carousel-fade">
+            <div class="carousel-inner">
+                @if ($activePurposes && !$activePurposes->isEmpty())
+                @foreach ($activePurposes as $ap)
+                    <div class="slider-element  carousel-item active " style="background-color: {{$color->color}}">
+
+                        <div class="element-header">
+                            <h2>{{ $ap->purpose }}</h2>
+                            <div class="date">Цель до {{ $ap->dating }}</div>
+                        </div>
+                        <div class="element-content">
+                            <form action="{{route('closePurpose')}}" method="post" id="closePurposeForm" onsubmit="formAction(this, event)">
+                                @csrf
+                                <input type="text" name="purpose_id" value="{{ $ap->id }}">
+                                <div class="tasks">
+                                @foreach ($activeTasks as $at)
+                                @if ($at->pId == $ap->id)
+
+                                    <input type="text" name="task_id" value="{{ $at->id }}"
+                                        class="visually-hidden">
+                                    <input type="checkbox"  value="{{$at->id}}"
+                                        id="task{{ $at->id }}-status-checkbox{{ $at->id }}"
+                                        class="task-status-checkbox" @if ($at->status == 1) checked @endif>
+                                    <label
+                                        for="task{{ $at->id }}-status-checkbox{{ $at->id }}">{{ $at->name }}</label>
+
+                                        @endif
+                                @endforeach
+                            </div>
+                                <div class="flex-box -just-center">
+                                    <button type="submit" class="submit">Закрыть цель</button>
+                                </div>
+                                <div class="alert alert-danger mt-3" style="display: none" id="formError{{$ap->id}}" role="alert"></div>
+
+                            </form>
+                        </div>
+
+                    </div>
+                @endforeach
+            @else
+                <h1>Активных целей нет</h1>
+            @endif
+
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <svg width="36" height="79" viewBox="0 0 36 79" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M34 2L3 38.9048L34 77" stroke="black" stroke-width="4" />
+            </svg>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+                <svg width="36" height="79" viewBox="0 0 36 79" fill="none"
+                xmlns="http://www.w3.org/2000/svg">
+                <path d="M2 77L33 40.0952L2 2" stroke="black" stroke-width="4" />
+            </svg>
+
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
 
         <div class="main-container">
             <div class="main-row">

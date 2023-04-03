@@ -5,7 +5,7 @@
         <form action="{{route('addNote')}}" method="post" id="addNote" onsubmit="formAction(this, event)">
         <div class="main-row flex-box -wrap -just-between">
             <div class="diary-form -colum-50" style="border-color: {{$color->color}}">
-                <label for="textarea">Запись от <span id="date-info"></span></label>
+                <label for="textarea">Запись от <br> <span id="date-info"></span></label>
                 <textarea name="message" id="messageInput" cols="30" rows="10"  style="border-color: {{$color->color}}">
                 </textarea>
                 <div class="invalid-feedback" id="messageError"> </div>
@@ -32,8 +32,10 @@
                             <h1>Хороших дней:<span id="text-success" class="text-success"></span></h1>
                             <h1>Нормальных дней:<span id="text-warning" class="text-warning"></span></h1>
                             <h1>Плохих дней:<span id="text-danger" class="text-danger"></span></h1>
+
                             <h1>Дней без указания статуса:<span id="text-primary" class="text-primary"></span></h1>
                         </div>
+                        <br>
                         <div class="diary-warning">
                             <h1>Главная причина переживаний в этом месяце: <span id="warningValue" class="text-danger"></span></h1>
                         </div>

@@ -126,7 +126,7 @@ function drawChart() {
         dataType: "json",
         async: false
     }).responseJSON;
-    console.log(jsonData);
+    // console.log(jsonData);
     var data = new google.visualization.DataTable();
     data.addColumn('string', 'name');
     data.addColumn('number', 'percent');
@@ -141,7 +141,7 @@ function drawChart() {
     data.addRows(
         rows
     )
-    console.log(colors);
+    // console.log(colors);
     var options = {
         height: '100%',
         width: '100%',
@@ -152,6 +152,7 @@ function drawChart() {
     var chart = new google.visualization.PieChart(document.getElementById('diagram'));
     chart.draw(data, options);
 }
+
 // function drawChart() {
 //     var jsonData = $.ajax({
 //         url: '/profile/diagram',
@@ -185,110 +186,79 @@ function drawChart() {
 //     chart.draw(data, options);
 // }
 
-$(document).ready(function (params) {
-    //данные из календаря
-    date = document.getElementById('calendar-diary').value;
-    var data = {
-        'date': document.getElementById('calendar-diary').value
-    }
-    $.get({
-        url: '/diary/showNote',
-        data: data,
-        success: (res) => {
-            // console.log(res.warningValue);
+    $(document).ready(function (params) {
+        //данные из календаря
+        date = document.getElementById('calendar-diary').value;
+        var data = {
+            'date': document.getElementById('calendar-diary').value
+        }
+        $.get({
+            url: '/diary/showNote',
+            data: data,
+            success: (res) => {
+                // console.log(res.warningValue);
 
-            // Статистика
-            $('span#text-success').text(' ' + res.goodDays);
-            $('span#text-warning').text(' ' + res.normalDays);
-            $('span#text-danger').text(' ' + res.badDays);
-            $('span#text-primary').text(' ' + res.nonDays);
-            $('span#monthValue').text(' ' + res.monthValue);
-            max = 0;
-            $.each(res.warningValue, function (index, value) {
-                if (max > value) {
-                    max = max;
-
-                } else {
-                    max = value;
-                }
-                // console.log(max);
-                if (max == value) {
-                    $('span#warningValue').text(index);
-                }
-            });
-
-            // Всё остальное
-            $('textarea#messageInput').val(res.message);
-            $('span#date-info').text(res.dating);
-            if (res.status != null) {
-                $('input#day-status-checkbox').prop('checked', true);
-                $('select#status-select').slideDown(300);
-                if (res.status == 'Отличный') {
-                    $('select#status-select').prop('selectedIndex', 1);
-                }
-                if (res.status == 'Нормальный') {
-                    $('select#status-select').prop('selectedIndex', 2);
-                }
-                if (res.status == 'Плохой') {
-                    $('select#status-select').prop('selectedIndex', 3);
-                }
-            }
-            else {
-                $('select#status-select').slideUp(300);
-                $('select#status-select').prop('selectedIndex', 0);
-                $('input#day-status-checkbox').prop('checked', false);
-            }
-            if (res.warning != null) {
-                $('input#day-warning-checkbox').prop('checked', true);
-                $('input#warning').slideDown(300);
-                $('input#warning').val(res.warning);
-            } else {
-                $('input#day-warning-checkbox').prop('checked', false);
-                $('input#warning').slideUp(300);
-                $('input#warning').val('');
-            }
-
-
-        }, error: (res) => {
-            // Пустой месяц
-            // Статистика
-            $('span#text-success').text('');
-            $('span#text-warning').text('');
-            $('span#text-danger').text('');
-            $('span#text-primary').text(' ' + res.responseJSON.nonDays);
-            $('span#warningValue').text('');
-            $('span#monthValue').text(' ' + res.responseJSON.monthValue);
-            // Всё остальное
-            $('textarea#messageInput').val('');
-            $('span#date-info').text(date);
-            $('input#warning').val('');
-            $('input#day-warning-checkbox').prop('checked', false);
-            $('input#day-status-checkbox').prop('checked', false);
-            $('select#status-select').prop('selectedIndex', 0);
-            $('input#warning').slideUp(300);
-            $('select#status-select').slideUp(300);
-
-            // Месяц с данными
-            if (res.responseJSON.errors == 'Error') {
                 // Статистика
-                $('span#monthValue').text(' ' + res.responseJSON.monthValue);
-                $('span#text-success').text(' ' + res.responseJSON.goodDays);
-                $('span#text-warning').text(' ' + res.responseJSON.normalDays);
-                $('span#text-danger').text(' ' + res.responseJSON.badDays);
-                $('span#text-primary').text(' ' + res.responseJSON.nonDays);
+                $('span#text-success').text(' ' + res.goodDays);
+                $('span#text-warning').text(' ' + res.normalDays);
+                $('span#text-danger').text(' ' + res.badDays);
+                $('span#text-primary').text(' ' + res.nonDays);
+                $('span#monthValue').text(' ' + res.monthValue);
                 max = 0;
-                $.each(res.responseJSON.warningValue, function (index, value) {
+                $.each(res.warningValue, function (index, value) {
                     if (max > value) {
                         max = max;
 
                     } else {
                         max = value;
                     }
-
+                    // console.log(max);
                     if (max == value) {
                         $('span#warningValue').text(index);
                     }
                 });
+
+                // Всё остальное
+                $('textarea#messageInput').val(res.message);
+                $('span#date-info').text(res.dating);
+                if (res.status != null) {
+                    $('input#day-status-checkbox').prop('checked', true);
+                    $('select#status-select').slideDown(300);
+                    if (res.status == 'Отличный') {
+                        $('select#status-select').prop('selectedIndex', 1);
+                    }
+                    if (res.status == 'Нормальный') {
+                        $('select#status-select').prop('selectedIndex', 2);
+                    }
+                    if (res.status == 'Плохой') {
+                        $('select#status-select').prop('selectedIndex', 3);
+                    }
+                }
+                else {
+                    $('select#status-select').slideUp(300);
+                    $('select#status-select').prop('selectedIndex', 0);
+                    $('input#day-status-checkbox').prop('checked', false);
+                }
+                if (res.warning != null) {
+                    $('input#day-warning-checkbox').prop('checked', true);
+                    $('input#warning').slideDown(300);
+                    $('input#warning').val(res.warning);
+                } else {
+                    $('input#day-warning-checkbox').prop('checked', false);
+                    $('input#warning').slideUp(300);
+                    $('input#warning').val('');
+                }
+
+
+            }, error: (res) => {
+                // Пустой месяц
+                // Статистика
+                $('span#text-success').text('');
+                $('span#text-warning').text('');
+                $('span#text-danger').text('');
+                $('span#text-primary').text(' ' + res.responseJSON.nonDays);
+                $('span#warningValue').text('');
+                $('span#monthValue').text(' ' + res.responseJSON.monthValue);
                 // Всё остальное
                 $('textarea#messageInput').val('');
                 $('span#date-info').text(date);
@@ -298,110 +268,112 @@ $(document).ready(function (params) {
                 $('select#status-select').prop('selectedIndex', 0);
                 $('input#warning').slideUp(300);
                 $('select#status-select').slideUp(300);
+
+                // Месяц с данными
+                if (res.responseJSON.errors == 'Error') {
+                    // Статистика
+                    $('span#monthValue').text(' ' + res.responseJSON.monthValue);
+                    $('span#text-success').text(' ' + res.responseJSON.goodDays);
+                    $('span#text-warning').text(' ' + res.responseJSON.normalDays);
+                    $('span#text-danger').text(' ' + res.responseJSON.badDays);
+                    $('span#text-primary').text(' ' + res.responseJSON.nonDays);
+                    max = 0;
+                    $.each(res.responseJSON.warningValue, function (index, value) {
+                        if (max > value) {
+                            max = max;
+
+                        } else {
+                            max = value;
+                        }
+
+                        if (max == value) {
+                            $('span#warningValue').text(index);
+                        }
+                    });
+                    // Всё остальное
+                    $('textarea#messageInput').val('');
+                    $('span#date-info').text(date);
+                    $('input#warning').val('');
+                    $('input#day-warning-checkbox').prop('checked', false);
+                    $('input#day-status-checkbox').prop('checked', false);
+                    $('select#status-select').prop('selectedIndex', 0);
+                    $('input#warning').slideUp(300);
+                    $('select#status-select').slideUp(300);
+                }
             }
-        }
+        })
     })
-})
+    $('input#calendar-diary').change(function (params) {
+        date = document.getElementById('calendar-diary').value;
+        var data = {
+            'date': document.getElementById('calendar-diary').value
+        }
+        $.get({
+            url: '/diary/showNote',
+            data: data,
+            success: (res) => {
 
-$('input#calendar-diary').change(function (params) {
-    date = document.getElementById('calendar-diary').value;
-    var data = {
-        'date': document.getElementById('calendar-diary').value
-    }
-    $.get({
-        url: '/diary/showNote',
-        data: data,
-        success: (res) => {
-
-            // Статистика
-            $('span#text-success').text(' ' + res.goodDays);
-            $('span#text-warning').text(' ' + res.normalDays);
-            $('span#text-danger').text(' ' + res.badDays);
-            $('span#text-primary').text(' ' + res.nonDays);
-            $('span#monthValue').text(' ' + res.monthValue);
-            max = 0;
-            $.each(res.warningValue, function (index, value) {
-                if (max > value) {
-                    max = max;
-
-                } else {
-                    max = value;
-                }
-                // console.log(max);
-                if (max == value) {
-                    $('span#warningValue').text(index);
-                }
-            });
-            // Всё остальное
-            $('textarea#messageInput').val(res.message);
-            $('span#date-info').text(res.dating);
-            if (res.status != null) {
-                $('input#day-status-checkbox').prop('checked', true);
-                $('select#status-select').slideDown(300);
-                if (res.status == 'Отличный') {
-                    $('select#status-select').prop('selectedIndex', 1);
-                }
-                if (res.status == 'Нормальный') {
-                    $('select#status-select').prop('selectedIndex', 2);
-                }
-                if (res.status == 'Плохой') {
-                    $('select#status-select').prop('selectedIndex', 3);
-                }
-            }
-            else {
-                $('select#status-select').slideUp(300);
-                $('select#status-select').prop('selectedIndex', 0);
-                $('input#day-status-checkbox').prop('checked', false);
-            }
-            if (res.warning != null) {
-                $('input#day-warning-checkbox').prop('checked', true);
-                $('input#warning').slideDown(300);
-                $('input#warning').val(res.warning);
-            } else {
-                $('input#day-warning-checkbox').prop('checked', false);
-                $('input#warning').slideUp(300);
-                $('input#warning').val('');
-            }
-            // console.log(res);
-        }, error: (res) => {
-            // Пустой месяц
-            // Статистика
-            $('span#text-success').text('');
-            $('span#text-warning').text('');
-            $('span#text-danger').text('');
-            $('span#text-primary').text(' ' + res.responseJSON.nonDays);
-            $('span#warningValue').text('');
-            $('span#monthValue').text(' ' + res.responseJSON.monthValue);
-            // Всё остальное
-            $('textarea#messageInput').val('');
-            $('span#date-info').text(date);
-            $('input#warning').val('');
-            $('input#day-warning-checkbox').prop('checked', false);
-            $('input#day-status-checkbox').prop('checked', false);
-            $('select#status-select').prop('selectedIndex', 0);
-            $('input#warning').slideUp(300);
-            $('select#status-select').slideUp(300);
-            // Месяц с данными
-            if (res.responseJSON.errors == 'Error') {
                 // Статистика
-                $('span#monthValue').text(' ' + res.responseJSON.monthValue);
-                $('span#text-success').text(' ' + res.responseJSON.goodDays);
-                $('span#text-warning').text(' ' + res.responseJSON.normalDays);
-                $('span#text-danger').text(' ' + res.responseJSON.badDays);
-                $('span#text-primary').text(' ' + res.responseJSON.nonDays);
+                if (window.location.href == '/diary' ) {
+                $('span#text-success').text(' ' + res.goodDays);
+                $('span#text-warning').text(' ' + res.normalDays);
+                $('span#text-danger').text(' ' + res.badDays);
+                $('span#text-primary').text(' ' + res.nonDays);
+                $('span#monthValue').text(' ' + res.monthValue);
                 max = 0;
-                $.each(res.responseJSON.warningValue, function (index, value) {
+                $.each(res.warningValue, function (index, value) {
                     if (max > value) {
                         max = max;
 
                     } else {
                         max = value;
                     }
-
+                    // console.log(max);
                     if (max == value) {
                         $('span#warningValue').text(index);
                     }
                 });
+                // Всё остальное
+                $('textarea#messageInput').val(res.message);
+                $('span#date-info').text(res.dating);
+                if (res.status != null) {
+                    $('input#day-status-checkbox').prop('checked', true);
+                    $('select#status-select').slideDown(300);
+                    if (res.status == 'Отличный') {
+                        $('select#status-select').prop('selectedIndex', 1);
+                    }
+                    if (res.status == 'Нормальный') {
+                        $('select#status-select').prop('selectedIndex', 2);
+                    }
+                    if (res.status == 'Плохой') {
+                        $('select#status-select').prop('selectedIndex', 3);
+                    }
+                }
+                else {
+                    $('select#status-select').slideUp(300);
+                    $('select#status-select').prop('selectedIndex', 0);
+                    $('input#day-status-checkbox').prop('checked', false);
+                }
+                if (res.warning != null) {
+                    $('input#day-warning-checkbox').prop('checked', true);
+                    $('input#warning').slideDown(300);
+                    $('input#warning').val(res.warning);
+                } else {
+                    $('input#day-warning-checkbox').prop('checked', false);
+                    $('input#warning').slideUp(300);
+                    $('input#warning').val('');
+                }
+                // console.log(res);
+            }} , error: (res) => {
+                if (window.location.href == '/diary' ) {
+                // Пустой месяц
+                // Статистика
+                $('span#text-success').text('');
+                $('span#text-warning').text('');
+                $('span#text-danger').text('');
+                $('span#text-primary').text(' ' + res.responseJSON.nonDays);
+                $('span#warningValue').text('');
+                $('span#monthValue').text(' ' + res.responseJSON.monthValue);
                 // Всё остальное
                 $('textarea#messageInput').val('');
                 $('span#date-info').text(date);
@@ -411,150 +383,188 @@ $('input#calendar-diary').change(function (params) {
                 $('select#status-select').prop('selectedIndex', 0);
                 $('input#warning').slideUp(300);
                 $('select#status-select').slideUp(300);
-            }
-        }
+                // Месяц с данными
+                if (res.responseJSON.errors == 'Error') {
+                    // Статистика
+                    $('span#monthValue').text(' ' + res.responseJSON.monthValue);
+                    $('span#text-success').text(' ' + res.responseJSON.goodDays);
+                    $('span#text-warning').text(' ' + res.responseJSON.normalDays);
+                    $('span#text-danger').text(' ' + res.responseJSON.badDays);
+                    $('span#text-primary').text(' ' + res.responseJSON.nonDays);
+                    max = 0;
+                    $.each(res.responseJSON.warningValue, function (index, value) {
+                        if (max > value) {
+                            max = max;
+
+                        } else {
+                            max = value;
+                        }
+
+                        if (max == value) {
+                            $('span#warningValue').text(index);
+                        }
+                    });
+                    // Всё остальное
+                    $('textarea#messageInput').val('');
+                    $('span#date-info').text(date);
+                    $('input#warning').val('');
+                    $('input#day-warning-checkbox').prop('checked', false);
+                    $('input#day-status-checkbox').prop('checked', false);
+                    $('select#status-select').prop('selectedIndex', 0);
+                    $('input#warning').slideUp(300);
+                    $('select#status-select').slideUp(300);
+                }
+            }}
+        })
     })
-})
-
-$(document).ready(function (params) {
-    //данные из календаря
-    date = document.getElementById('calendar-diary-profile').value;
-    var data = {
-        'date': document.getElementById('calendar-diary-profile').value
-    }
-    $.get({
-        url: '/profile/showNote',
-        data: data,
-        success: (res) => {
-            // console.log(res.warningValue);
-            // Статистика
-            $('span#text-success').text(' ' + res.goodDays);
-            $('span#text-warning').text(' ' + res.normalDays);
-            $('span#text-danger').text(' ' + res.badDays);
-            $('span#text-primary').text(' ' + res.nonDays);
-            $('span#monthValue').text(' ' + res.monthValue);
-            max = 0;
-            $.each(res.warningValue, function (index, value) {
-                if (max > value) {
-                    max = max;
-
-                } else {
-                    max = value;
-                }
-                // console.log(max);
-                if (max == value) {
-                    $('span#warningValue').text(index);
-                }
-            });
 
 
-
-        }, error: (res) => {
-            // Пустой месяц
-            // Статистика
-            $('span#text-success').text('');
-            $('span#text-warning').text('');
-            $('span#text-danger').text('');
-            $('span#text-primary').text(' ' + res.responseJSON.nonDays);
-            $('span#warningValue').text('');
-            $('span#monthValue').text(' ' + res.responseJSON.monthValue);
-
-            // Месяц с данными
-            if (res.responseJSON.errors == 'Error') {
+    $(document).ready(function (params) {
+        //данные из календаря
+        date = document.getElementById('calendar-diary-profile').value;
+        var data = {
+            'date': document.getElementById('calendar-diary-profile').value
+        }
+        $.get({
+            url: '/profile/showNote',
+            data: data,
+            success: (res) => {
+                // console.log(res.warningValue);
                 // Статистика
-                $('span#monthValue').text(' ' + res.responseJSON.monthValue);
-                $('span#text-success').text(' ' + res.responseJSON.goodDays);
-                $('span#text-warning').text(' ' + res.responseJSON.normalDays);
-                $('span#text-danger').text(' ' + res.responseJSON.badDays);
-                $('span#text-primary').text(' ' + res.responseJSON.nonDays);
+
+                $('span#text-success').text(' ' + res.goodDays);
+                $('span#text-warning').text(' ' + res.normalDays);
+                $('span#text-danger').text(' ' + res.badDays);
+                $('span#text-primary').text(' ' + res.nonDays);
+                $('span#monthValue').text(' ' + res.monthValue);
                 max = 0;
-                $.each(res.responseJSON.warningValue, function (index, value) {
+                $.each(res.warningValue, function (index, value) {
                     if (max > value) {
                         max = max;
 
                     } else {
                         max = value;
                     }
-
+                    // console.log(max);
                     if (max == value) {
                         $('span#warningValue').text(index);
                     }
                 });
 
 
-            }
-        }
-    })
-})
 
-$('input#calendar-diary-profile').change(function (params) {
-    date = document.getElementById('calendar-diary-profile').value;
-    var data = {
-        'date': document.getElementById('calendar-diary-profile').value
-    }
-    $.get({
-        url: '/profile/showNote',
-        data: data,
-        success: (res) => {
-            // console.log(res.warningValue);
+            }, error: (res) => {
 
-            // Статистика
-            $('span#text-success').text(' ' + res.goodDays);
-            $('span#text-warning').text(' ' + res.normalDays);
-            $('span#text-danger').text(' ' + res.badDays);
-            $('span#text-primary').text(' ' + res.nonDays);
-            $('span#monthValue').text(' ' + res.monthValue);
-            max = 0;
-            $.each(res.warningValue, function (index, value) {
-                if (max > value) {
-                    max = max;
 
-                } else {
-                    max = value;
-                }
-                // console.log(max);
-                if (max == value) {
-                    $('span#warningValue').text(index);
-                }
-            });
-
-        }, error: (res) => {
-            // Пустой месяц
-            // Статистика
-            $('span#text-success').text('');
-            $('span#text-warning').text('');
-            $('span#text-danger').text('');
-            $('span#text-primary').text(' ' + res.responseJSON.nonDays);
-            $('span#warningValue').text('');
-            $('span#monthValue').text(' ' + res.responseJSON.monthValue);
-
-            // Месяц с данными
-            if (res.responseJSON.errors == 'Error') {
+                // Пустой месяц
                 // Статистика
-                $('span#monthValue').text(' ' + res.responseJSON.monthValue);
-                $('span#text-success').text(' ' + res.responseJSON.goodDays);
-                $('span#text-warning').text(' ' + res.responseJSON.normalDays);
-                $('span#text-danger').text(' ' + res.responseJSON.badDays);
+                $('span#text-success').text('');
+                $('span#text-warning').text('');
+                $('span#text-danger').text('');
                 $('span#text-primary').text(' ' + res.responseJSON.nonDays);
+                $('span#warningValue').text('');
+                $('span#monthValue').text(' ' + res.responseJSON.monthValue);
+
+                // Месяц с данными
+                if (res.responseJSON.errors = 'Error') {
+                    // Статистика
+                    $('span#monthValue').text(' ' + res.responseJSON.monthValue);
+                    $('span#text-success').text(' ' + res.responseJSON.goodDays);
+                    $('span#text-warning').text(' ' + res.responseJSON.normalDays);
+                    $('span#text-danger').text(' ' + res.responseJSON.badDays);
+                    $('span#text-primary').text(' ' + res.responseJSON.nonDays);
+                    max = 0;
+                    $.each(res.responseJSON.warningValue, function (index, value) {
+                        if (max > value) {
+                            max = max;
+
+                        } else {
+                            max = value;
+                        }
+
+                        if (max == value) {
+                            $('span#warningValue').text(index);
+                        }
+                    });
+
+
+                }
+            }
+        })
+    })
+    $('input#calendar-diary-profile').change(function (params) {
+        date = document.getElementById('calendar-diary-profile').value;
+        var data = {
+            'date': document.getElementById('calendar-diary-profile').value
+        }
+        $.get({
+            url: '/profile/showNote',
+            data: data,
+            success: (res) => {
+                // console.log(res.warningValue);
+
+                // Статистика
+                $('span#text-success').text(' ' + res.goodDays);
+                $('span#text-warning').text(' ' + res.normalDays);
+                $('span#text-danger').text(' ' + res.badDays);
+                $('span#text-primary').text(' ' + res.nonDays);
+                $('span#monthValue').text(' ' + res.monthValue);
                 max = 0;
-                $.each(res.responseJSON.warningValue, function (index, value) {
+                $.each(res.warningValue, function (index, value) {
                     if (max > value) {
                         max = max;
 
                     } else {
                         max = value;
                     }
-
+                    // console.log(max);
                     if (max == value) {
                         $('span#warningValue').text(index);
                     }
                 });
 
+            }, error: (res) => {
+                // Пустой месяц
+                // Статистика
+                $('span#text-success').text('');
+                $('span#text-warning').text('');
+                $('span#text-danger').text('');
+                $('span#text-primary').text(' ' + res.responseJSON.nonDays);
+                $('span#warningValue').text('');
+                $('span#monthValue').text(' ' + res.responseJSON.monthValue);
 
+                // Месяц с данными
+                if (res.responseJSON.errors == 'Error') {
+                    // Статистика
+                    $('span#monthValue').text(' ' + res.responseJSON.monthValue);
+                    $('span#text-success').text(' ' + res.responseJSON.goodDays);
+                    $('span#text-warning').text(' ' + res.responseJSON.normalDays);
+                    $('span#text-danger').text(' ' + res.responseJSON.badDays);
+                    $('span#text-primary').text(' ' + res.responseJSON.nonDays);
+                    max = 0;
+                    $.each(res.responseJSON.warningValue, function (index, value) {
+                        if (max > value) {
+                            max = max;
+
+                        } else {
+                            max = value;
+                        }
+
+                        if (max == value) {
+                            $('span#warningValue').text(index);
+                        }
+                    });
+
+
+                }
             }
-        }
+        })
     })
-})
+
+
+
+
+
 
 
 function addEl() {

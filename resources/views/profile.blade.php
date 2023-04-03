@@ -60,9 +60,10 @@
                             <h3>Плохих дней:<span id="text-danger" class="text-danger"></span></h3>
                             <h3>Дней без записей:<span id="text-primary" class="text-primary"></span></h3>
                         </div>
+                        <br>
                         <div>
                             <h3>Главная причина переживаний в этом месяце: <span id="warningValue" class="text-danger"><br>
-                                    Экзамены</span></h3>
+                                  </span></h3>
                         </div>
                         <div class="calendar"  style="background-color: {{$user->color}}">
                             <div class="calendar-content">
