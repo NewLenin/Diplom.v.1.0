@@ -1,6 +1,20 @@
 @extends('layouts.main')
 @section('main')
 
+<div class="toast-container position-fixed bottom-0 end-0 p-3">
+    <div class="toast" id="ToastFinance" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header">
+          <strong class="me-auto">MyDiscipline</strong>
+          <small>Сейчас</small>
+          <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body">
+          Цвет диагрммы изменится при перезагрузке страницы
+        </div>
+      </div>
+    </div>
+
+
     <section class="finance">
         <div class="main-container">
             <div class="main-row">
@@ -249,9 +263,6 @@
 
         </div>
     </section>
-
-
-
 
 
 @endsection

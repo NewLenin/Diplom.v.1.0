@@ -1,5 +1,7 @@
+
 @extends('layouts.main')
 @section('main')
+
 <section class="diary">
     <div class="main-container">
         <form action="{{route('addNote')}}" method="post" id="addNote" onsubmit="formAction(this, event)">

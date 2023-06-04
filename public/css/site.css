@@ -334,12 +334,12 @@ textarea {
   right: 17px;
 }
 
-.purpose .unfulfilled-purpose .unfulfilled-content input, .purpose .slider-element .element-content form input, .diary .additional-parameters .day-status input {
+.purpose .unfulfilled-purpose .unfulfilled-content input, .purpose .slider-element .element-content form input, .additional-parameters .day-status input {
   position: absolute;
   z-index: -1;
   opacity: 0;
 }
-.purpose .unfulfilled-purpose .unfulfilled-content input + label, .purpose .slider-element .element-content form input + label, .diary .additional-parameters .day-status input + label {
+.purpose .unfulfilled-purpose .unfulfilled-content input + label, .purpose .slider-element .element-content form input + label, .additional-parameters .day-status input + label {
   cursor: pointer;
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
@@ -352,7 +352,7 @@ textarea {
   -ms-user-select: none;
   user-select: none;
 }
-.purpose .unfulfilled-purpose .unfulfilled-content input + label::before, .purpose .slider-element .element-content form input + label::before, .diary .additional-parameters .day-status input + label::before {
+.purpose .unfulfilled-purpose .unfulfilled-content input + label::before, .purpose .slider-element .element-content form input + label::before, .additional-parameters .day-status input + label::before {
   content: "";
   display: inline-block;
   width: 40px;
@@ -369,12 +369,12 @@ textarea {
   background-position: center center;
   background-size: 50% 50%;
 }
-.purpose .unfulfilled-purpose .unfulfilled-content input:checked + label::before, .purpose .slider-element .element-content form input:checked + label::before, .diary .additional-parameters .day-status input:checked + label::before {
+.purpose .unfulfilled-purpose .unfulfilled-content input:checked + label::before, .purpose .slider-element .element-content form input:checked + label::before, .additional-parameters .day-status input:checked + label::before {
   border-color: #42ff00;
   background-color: #ffffff;
   background-image: url("../img/Vector 29.svg");
 }
-.purpose .unfulfilled-purpose .unfulfilled-content input:not(:disabled):not(:checked) + label:hover::before, .purpose .slider-element .element-content form input:not(:disabled):not(:checked) + label:hover::before, .diary .additional-parameters .day-status input:not(:disabled):not(:checked) + label:hover::before {
+.purpose .unfulfilled-purpose .unfulfilled-content input:not(:disabled):not(:checked) + label:hover::before, .purpose .slider-element .element-content form input:not(:disabled):not(:checked) + label:hover::before, .additional-parameters .day-status input:not(:disabled):not(:checked) + label:hover::before {
   border-color: #6ac947;
 }
 
@@ -451,6 +451,13 @@ a {
   /*flex: 0 1 50%;*/
   min-width: 417px;
   max-width: 48.55%;
+}
+
+@media (max-width: 425px) {
+  .-colum-50 {
+    min-width: 0px;
+    max-width: 320px;
+  }
 }
 
 .-colum-66 {
@@ -563,6 +570,11 @@ a.underline {
   color: #ffffff;
   padding: 0 0 28px 0;
 }
+@media (max-width: 710px) {
+  .main .main-diary .main-diary-content h1 {
+    font-size: 28px;
+  }
+}
 .main .main-diary .main-diary-content a {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -583,10 +595,32 @@ a.underline {
   color: #8510ae;
   text-decoration: none;
 }
+@media (max-width: 425px) {
+  .main .main-diary .main-diary-content a {
+    width: 250px;
+  }
+}
 .main .main-diary .main-diary-content .main-diary-decoration {
   position: absolute;
   top: 32px;
   right: 32px;
+}
+@media (max-width: 710px) {
+  .main .main-diary .main-diary-content .main-diary-decoration {
+    top: 16px;
+    right: 8px;
+  }
+}
+@media (max-width: 710px) {
+  .main .main-diary .main-diary-content .main-diary-decoration svg {
+    height: 80%;
+    width: 80%;
+  }
+}
+@media (max-width: 425px) {
+  .main .main-diary .main-diary-content .main-diary-decoration svg {
+    display: none;
+  }
 }
 .main .main-finance {
   margin: 5px;
@@ -606,20 +640,38 @@ a.underline {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
 }
-.main .main-finance .main-finance-content .main-finance-img {
-  width: auto;
-  height: 100%;
-}
-.main .main-finance .main-finance-content .main-finance-img img {
+.main .main-finance .main-finance-content .main-finance-text {
+  margin-bottom: 15px;
   width: 100%;
-  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  height: 115px;
+  background: #ffffff;
+  border-radius: 5px;
+  font-weight: 400;
+  font-size: 48px;
+  line-height: 57px;
+  text-align: center;
+  color: #000000;
+}
+@media (max-width: 425px) {
+  .main .main-finance .main-finance-content .main-finance-text {
+    font-size: 32px;
+  }
 }
 .main .main-finance .main-finance-content .main-finance-decoration {
   position: absolute;
@@ -694,6 +746,11 @@ a.underline {
   text-align: center;
   color: #000000;
 }
+@media (max-width: 425px) {
+  .main .main-purpose .main-purpose-content .main-purpose-text {
+    font-size: 32px;
+  }
+}
 .main .main-purpose .main-purpose-content a {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -767,7 +824,7 @@ header .header .header-links .profile-button {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  width: 160px;
+  width: 150px;
   height: 59px;
   background: #ffffff;
   border: 2px solid #000000;
@@ -958,18 +1015,38 @@ footer .copy {
   background: #2e2e2e;
   border-radius: 10px;
 }
+@media (max-width: 450px) {
+  .diary .calendar {
+    max-width: 350px;
+  }
+}
 .diary .calendar .calendar-decoration {
   position: absolute;
   top: 20px;
   right: 17px;
 }
 .diary .calendar .calendar-content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   width: 100%;
   height: 100%;
   max-width: 553px;
   max-height: 248px;
+  min-height: 70px;
   background: #ffffff;
   border-radius: 5px;
+}
+@media (max-width: 450px) {
+  .diary .calendar .calendar-content {
+    max-width: 350px;
+  }
 }
 .diary .calendar .calendar-content .calendar-input {
   height: 100%;
@@ -996,6 +1073,11 @@ footer .copy {
   background: #2e2e2e;
   border-radius: 10px;
 }
+@media (max-width: 425px) {
+  .diary .diary-statistic {
+    max-width: 320px;
+  }
+}
 .diary .diary-statistic label {
   font-weight: 400;
   font-size: 40px;
@@ -1006,6 +1088,7 @@ footer .copy {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  max-width: 460px;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
@@ -1014,6 +1097,11 @@ footer .copy {
   height: auto;
   background: #ffffff;
   border-radius: 5px;
+}
+@media (max-width: 1024px) {
+  .diary .diary-statistic .diary-statistic-content {
+    max-width: 300px;
+  }
 }
 .diary .diary-statistic .diary-statistic-content .diary-days h1 {
   font-weight: 400;
@@ -1027,7 +1115,11 @@ footer .copy {
   line-height: 47px;
   color: #000000;
 }
-.diary .additional-parameters {
+.diary .diary-statistic .diary-statistic-content .diary-warning span {
+  overflow-wrap: break-word;
+}
+
+.additional-parameters {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1041,7 +1133,7 @@ footer .copy {
   line-height: 43px;
   color: #000000;
 }
-.diary .additional-parameters .day-status {
+.additional-parameters .day-status {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1050,7 +1142,7 @@ footer .copy {
       -ms-flex-direction: column;
           flex-direction: column;
 }
-.diary .additional-parameters .day-status label {
+.additional-parameters .day-status label {
   margin-bottom: 20px;
 }
 
@@ -1089,6 +1181,20 @@ footer .copy {
   background: #ffffff;
   border: 2px solid #000000;
   border-radius: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+.profile .profile-info .profile-img .img p {
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 28px;
 }
 .profile .profile-info .profile-img .img img {
   height: 100%;
@@ -1120,7 +1226,7 @@ footer .copy {
 }
 .profile .profile-info .profile-img .input-wrapper p {
   position: absolute;
-  top: 12px;
+  top: 5px;
   left: 62px;
 }
 .profile .profile-info .profile-data {
@@ -1199,6 +1305,11 @@ footer .copy {
   color: #000000;
   margin-bottom: 10px;
 }
+@media (max-width: 425px) {
+  .statistic h1 {
+    font-size: 36px;
+  }
+}
 .statistic h2 {
   font-weight: 400;
   font-size: 42.65px;
@@ -1240,8 +1351,17 @@ footer .copy {
   line-height: 47px;
   color: #000000;
 }
+@media (max-width: 375px) {
+  .statistic .diary-profile-statistic .diary-profile-statistic-content h3 {
+    font-size: 24px;
+  }
+}
+.statistic .diary-profile-statistic .diary-profile-statistic-content span {
+  overflow-wrap: break-word;
+}
 .statistic .diary-profile-statistic .diary-profile-statistic-content .calendar {
   position: absolute;
+  height: auto;
   top: -1px;
   right: -1px;
   padding: 0 0 15px 27px;
@@ -1257,7 +1377,7 @@ footer .copy {
   border-radius: 5px;
 }
 .statistic .diary-profile-statistic .diary-profile-statistic-content .calendar .calendar-content .calendar-input {
-  height: 100%;
+  height: auto;
   width: 100%;
   font-weight: 400;
   font-size: 28px;
@@ -1309,6 +1429,11 @@ footer .copy {
   line-height: 47px;
   margin-bottom: 52px;
 }
+@media (max-width: 375px) {
+  .purpose-statistic .profile-purpose-content .closed h3 {
+    font-size: 28px;
+  }
+}
 .purpose-statistic .profile-purpose-content .closed a {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1329,6 +1454,9 @@ footer .copy {
   line-height: 47px;
   color: #ffffff;
   margin-bottom: 20px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .purpose-statistic .profile-purpose-content .active {
   display: -webkit-box;
@@ -1354,6 +1482,11 @@ footer .copy {
   line-height: 47px;
   margin-bottom: 52px;
 }
+@media (max-width: 375px) {
+  .purpose-statistic .profile-purpose-content .active h3 {
+    font-size: 28px;
+  }
+}
 .purpose-statistic .profile-purpose-content .active a {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1374,6 +1507,9 @@ footer .copy {
   line-height: 47px;
   color: #ffffff;
   margin-bottom: 20px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .purpose-statistic .profile-purpose-content .lose {
   display: -webkit-box;
@@ -1399,6 +1535,11 @@ footer .copy {
   line-height: 47px;
   margin-bottom: 5px;
 }
+@media (max-width: 375px) {
+  .purpose-statistic .profile-purpose-content .lose h3 {
+    font-size: 28px;
+  }
+}
 .purpose-statistic .profile-purpose-content .lose a {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1419,6 +1560,9 @@ footer .copy {
   line-height: 47px;
   color: #ffffff;
   margin-bottom: 20px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .finance-statistic {
@@ -1495,6 +1639,14 @@ footer .copy {
 .finance-statistic .profile-finance-content .balance .balance-data .percent svg {
   margin-right: 5px;
 }
+.finance-statistic .profile-finance-content .balance .balance-data .account-balance {
+  max-width: 70%;
+}
+@media (max-width: 375px) {
+  .finance-statistic .profile-finance-content .balance .balance-data .account-balance {
+    max-width: 60%;
+  }
+}
 .finance-statistic .profile-finance-content .balance .balance-data .account-balance h4 {
   font-weight: 400;
   font-size: 32px;
@@ -1504,6 +1656,7 @@ footer .copy {
   font-weight: 400;
   font-size: 24px;
   line-height: 28px;
+  overflow-wrap: break-word;
 }
 .finance-statistic .profile-finance-content .change-balance {
   display: -webkit-box;
@@ -1539,12 +1692,17 @@ footer .copy {
   font-size: 20px;
   line-height: 24px;
 }
-.finance-statistic .profile-finance-content .change-balance .change-balance-content .change-balance-data svg {
-  margin-right: 5px;
+.finance-statistic .profile-finance-content .change-balance .change-balance-content .change-balance-data P {
+  max-width: 100%;
 }
-.finance-statistic .profile-finance-content .change-balance .change-balance-content .change-balance-data span {
+.finance-statistic .profile-finance-content .change-balance .change-balance-content .change-balance-data P span {
+  overflow-wrap: break-word;
   font-size: 24px;
   line-height: 28px;
+}
+.finance-statistic .profile-finance-content .change-balance .change-balance-content .change-balance-data svg {
+  min-width: 25px;
+  margin-right: 5px;
 }
 .finance-statistic .profile-finance-content .change-balance .change-balance-content h5 {
   font-size: 20px;
@@ -1570,7 +1728,7 @@ footer .copy {
 }
 .purpose .slider-element {
   z-index: 2;
-  margin: 0 15px 30px 15px;
+  padding: 0 10px;
   padding: 40px;
   background: #2e2e2e;
   border-radius: 10px;
@@ -1594,6 +1752,23 @@ footer .copy {
   font-size: 40px;
   line-height: 47px;
   color: #ffffff;
+  max-width: 300px;
+  overflow-wrap: break-word;
+}
+@media (max-width: 1250px) {
+  .purpose .slider-element .element-header h2 {
+    max-width: 200px;
+  }
+}
+@media (max-width: 770px) {
+  .purpose .slider-element .element-header h2 {
+    max-width: 300px;
+  }
+}
+@media (max-width: 375px) {
+  .purpose .slider-element .element-header h2 {
+    max-width: 250px;
+  }
 }
 .purpose .slider-element .element-header .date {
   padding: 10px 50px;
@@ -1607,6 +1782,12 @@ footer .copy {
   height: 100%;
   width: 100%;
 }
+@media (max-width: 700px) {
+  .purpose .slider-element .element-header {
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+  }
+}
 .purpose .slider-element .element-content {
   padding: 40px 20px;
   display: -webkit-box;
@@ -1619,7 +1800,7 @@ footer .copy {
   -webkit-box-pack: start;
       -ms-flex-pack: start;
           justify-content: start;
-  height: 100%;
+  height: auto;
   width: 100%;
   background: #ffffff;
   border-radius: 5px;
@@ -1650,6 +1831,10 @@ footer .copy {
           flex-direction: column;
 }
 .purpose .slider-element .element-content form label {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
   margin-bottom: 20px;
 }
 .purpose .slider-element .element-content .add-task {
@@ -1802,11 +1987,34 @@ footer .copy {
           justify-content: space-between;
   margin-bottom: 20px;
 }
+@media (max-width: 1150px) {
+  .purpose .unfulfilled-purpose .unfulfilled-header {
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+  }
+}
 .purpose .unfulfilled-purpose .unfulfilled-header h2 {
   font-weight: 400;
   font-size: 40px;
   line-height: 47px;
   color: #ffffff;
+  max-width: 300px;
+  overflow-wrap: break-word;
+}
+@media (max-width: 1250px) {
+  .purpose .unfulfilled-purpose .unfulfilled-header h2 {
+    max-width: 200px;
+  }
+}
+@media (max-width: 770px) {
+  .purpose .unfulfilled-purpose .unfulfilled-header h2 {
+    max-width: 300px;
+  }
+}
+@media (max-width: 375px) {
+  .purpose .unfulfilled-purpose .unfulfilled-header h2 {
+    max-width: 250px;
+  }
 }
 .purpose .unfulfilled-purpose .unfulfilled-header .date {
   padding: 10px 50px;
@@ -1841,6 +2049,10 @@ footer .copy {
   line-height: 47px;
 }
 .purpose .unfulfilled-purpose .unfulfilled-content label {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
   margin-bottom: 20px;
 }
 .purpose .unfulfilled-purpose .unfulfilled-content .add-task {
@@ -1930,6 +2142,14 @@ footer .copy {
 .finance .balance .balance-info .balance-data .percent svg {
   margin-right: 5px;
 }
+.finance .balance .balance-info .balance-data .account-balance {
+  max-width: 70%;
+}
+@media (max-width: 375px) {
+  .finance .balance .balance-info .balance-data .account-balance {
+    max-width: 60%;
+  }
+}
 .finance .balance .balance-info .balance-data .account-balance h4 {
   font-weight: 400;
   font-size: 28px;
@@ -1939,6 +2159,7 @@ footer .copy {
   font-weight: 400;
   font-size: 20px;
   line-height: 38px;
+  overflow-wrap: break-word;
 }
 .finance .balance .diagram {
   height: auto;
@@ -2018,6 +2239,7 @@ footer .copy {
   max-width: 531px;
   width: 100%;
   padding-left: 20px;
+  overflow: hidden;
 }
 .finance .invoice .invoice-header form .invoice-container .invoice-color {
   background: #ffffff;
@@ -2182,6 +2404,7 @@ footer .copy {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  overflow: hidden;
 }
 
 .Error {
@@ -2241,4 +2464,9 @@ footer .copy {
 
 .form-cont {
   width: 300px;
+}
+
+.swiper {
+  width: 100%;
+  height: auto;
 }

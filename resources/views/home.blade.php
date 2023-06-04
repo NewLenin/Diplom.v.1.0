@@ -8,7 +8,7 @@
                     <h1>
                         Что у тебя сегодня нового?
                     </h1>
-                    <a href="/diary">
+                    <a href="{{route('diary')}}">
                         Записать в дневник
                     </a>
                     <div class="main-diary-decoration">
@@ -28,10 +28,10 @@
                             <circle cx="12.5" cy="12.5" r="12.5" fill="white" />
                         </svg>
                     </div>
-                    <div class="main-finance-img">
-                        <img src="../img/finance.png" />
+                    <div class="main-finance-text">
+                        Изменились финансы?
                     </div>
-                    <a href="/finance">
+                    <a href="{{route('finance')}}">
                         Просмотреть свои финансы
                     </a>
                 </div>
@@ -46,7 +46,7 @@
                     <div class="main-purpose-text">
                         Новая мечта?
                     </div>
-                    <a href="/purpose">
+                    <a href="{{route('purpose')}}">
                         Поставить цель
                     </a>
                 </div>

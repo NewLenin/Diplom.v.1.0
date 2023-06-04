@@ -60,16 +60,16 @@ class ProfileController extends Controller
     //редактирование профиля
     public function changeUser(Request $r)
     {
+      
         $validator = Validator::make($r->all(), [
             'fio' => 'string|nullable',
             'age' => 'date|nullable',
-            'email' => 'required|string|email:rfc|nullable',
             'file' => 'image|nullable',
             'color' => 'string|nullable',
         ]);
         if ($validator->fails()) {
             // dd($validator->errors());
-            return response()->json(['errors' => $validator->errors()], 400);
+            return response()->json($validator->errors(), 400 );
         }
         if (isset($r->file)) {
             $photo = $r->file->store('img', 'public');
@@ -79,10 +79,9 @@ class ProfileController extends Controller
         User::where('id', Auth::id())->update([
             'fio'=>$r->fio,
             'bithday'=>$r->age,
-            'email'=>$r->email,
             'color'=>$r->color,
         ]);
-        return redirect()->route('profile');
+        return redirect()->back();
     }
 
     public function showNote(Request $r)

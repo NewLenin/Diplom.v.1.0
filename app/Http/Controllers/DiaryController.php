@@ -18,6 +18,7 @@ class DiaryController extends Controller
         $todayNote = Note::where('dating', $today)->where('id', Auth::id())->first();
 
         return view('diary', [
+            // 'res' => $res,
             'today' => $today,
             'color' => $color,
             'todayNote' => $todayNote
@@ -93,7 +94,7 @@ class DiaryController extends Controller
         $note = Note::where('dating', $r->date)->where('user_id', Auth::id())->first();
         if ($note && isset($note)) {
             return response()->json([
-                'monthValue'=>$monthValue,
+                'monthValue' => $monthValue,
                 'goodDays' => $goodDays,
                 'normalDays' => $normalDays,
                 'badDays' => $badDays,
@@ -108,7 +109,7 @@ class DiaryController extends Controller
 
         //пустая дата
         return response()->json([
-            'monthValue'=>$monthValue,
+            'monthValue' => $monthValue,
             'goodDays' => $goodDays,
             'normalDays' => $normalDays,
             'badDays' => $badDays,
@@ -131,9 +132,9 @@ class DiaryController extends Controller
             // dd($validator->errors());
             return response()->json($validator->errors(), 400);
         }
-        $check = Note::where('dating', $r->date)->first();
+        $check = Note::where('dating', $r->date)->where('user_id', Auth::id())->first();
         if ($check) {
-            Note::where('dating', $r->date)->update([
+            Note::where('dating', $r->date)->where('user_id', Auth::id())->update([
                 'warning' => $r->warning,
                 'status' => $r->status,
                 'message' => $r->message

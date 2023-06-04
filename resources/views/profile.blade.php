@@ -3,13 +3,22 @@
     <section class="profile">
         <div class="main-container">
             <div class="main-row">
-                <form action="{{route('changeUser')}}" method="post" enctype="multipart/form-data" class="profile-info">
+                <form action="{{route('changeUser')}}" id="profileForm" method="post" enctype="multipart/form-data" class="profile-info">
                     @csrf
                     <div class="profile-img -colum-25">
-                        <div class="img" style="border-color: {{$user->color}}"><img src="../storage/{{$user->photo}}" alt=""></div>
+                        <div class="img" style="border-color: {{$user->color}}">
+                            @if ($user->photo != 0)
+                            <img src="{{asset('/public/storage')}}/{{$user->photo}}" alt="">
+                            @else
+                                <p>Фото нет</p>
+                            @endif
+                            
+
+                        </div>
                         <div class="input-wrapper" style="border-color: {{$user->color}}">
                             <p>Изменить фото</p>
-                            <input type="file" name="file">
+                            <input type="file" name="file" id="file">
+                            <div id="fileError" class="invalid-feedback"></div>
                         </div>
                     </div>
 
@@ -21,11 +30,9 @@
                         <input type="date" class="age" name="age"
                             value="{{ $user->bithday }}" style="border-color: {{$user->color}}"
                             placeholder="{{ $user->bithday }}">
-                        <label for="email">Email</label>
-                        <input type="email" class="email" name="email" placeholder="Введите почту"
-                            value="{{ $user->email }}" style="border-color: {{$user->color}}">
                         <div class="save">
                             <div class="color-con me-5">
+                                
                                 <label for="color">Любимый цвет</label>
                                 <input type="color" class="color" name="color" value="{{ $user->color }}" style="border-color: {{$user->color}}">
                             </div>

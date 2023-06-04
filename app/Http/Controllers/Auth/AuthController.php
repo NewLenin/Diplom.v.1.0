@@ -13,6 +13,7 @@ class AuthController extends Controller
     {
         return view('login');
     }
+
     public function auth(Request $r){
         $validator = Validator::make($r->all(),[
             'email'=> 'required|string|',
